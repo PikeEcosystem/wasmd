@@ -121,7 +121,7 @@ const appName = "WasmPlusApp"
 // We pull these out, so we can set them with LDFLAGS in the Makefile
 var (
 	NodeDir      = ".wasmplusd"
-	Bech32Prefix = "link"
+	Bech32Prefix = "pike"
 
 	ProposalsEnabled = "false"
 
