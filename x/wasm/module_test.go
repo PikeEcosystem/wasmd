@@ -24,7 +24,7 @@ import (
 	stakingkeeper "github.com/PikeEcosystem/cosmos-sdk/x/staking/keeper"
 	"github.com/PikeEcosystem/tendermint/crypto"
 	"github.com/PikeEcosystem/tendermint/crypto/ed25519"
-	wasmvm "github.com/CosmWasm/wasmvm"
+	wasmvm "github.com/PikeEcosystem/wasmvm"
 
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper"
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper/testdata"
@@ -607,7 +607,7 @@ func TestCheckLibwasmVersion(t *testing.T) {
 	parsed := strings.Split(string(res), "\n")
 	var expected string
 	for _, line := range parsed {
-		if strings.Contains(line, "github.com/CosmWasm/wasmvm") {
+		if strings.Contains(line, "github.com/PikeEcosystem/wasmvm") {
 			expected = strings.Split(strings.TrimSpace(line), " ")[1]
 		}
 	}

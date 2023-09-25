@@ -3,7 +3,7 @@ package testdata
 import (
 	_ "embed"
 
-	typwasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	typwasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 	"github.com/PikeEcosystem/cosmos-sdk/types"
 )
 

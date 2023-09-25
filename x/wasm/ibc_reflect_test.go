@@ -8,7 +8,7 @@ import (
 
 	channeltypes "github.com/PikeEcosystem/ibc-go/v3/modules/core/04-channel/types"
 	ibctesting "github.com/PikeEcosystem/ibc-go/v3/testing"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 
 	wasmibctesting "github.com/PikeEcosystem/wasmd/x/wasm/ibctesting"
 	wasmkeeper "github.com/PikeEcosystem/wasmd/x/wasm/keeper"

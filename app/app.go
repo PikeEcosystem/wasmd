@@ -110,10 +110,6 @@ import (
 	wasmclient "github.com/PikeEcosystem/wasmd/x/wasm/client"
 	wasmkeeper "github.com/PikeEcosystem/wasmd/x/wasm/keeper"
 
-	randommodule "github.com/PikeEcosystem/wasmd/x/random"
-	randommodulekeeper "github.com/PikeEcosystem/wasmd/x/random/keeper"
-	randommoduletypes "github.com/PikeEcosystem/wasmd/x/random/types"
-
 	// unnamed import of statik for swagger UI support
 	_ "github.com/PikeEcosystem/cosmos-sdk/client/docs/statik"
 )
@@ -207,7 +203,6 @@ var (
 		vesting.AppModuleBasic{},
 		wasm.AppModuleBasic{},
 		ica.AppModuleBasic{},
-		randommodule.AppModuleBasic{},
 	)
 
 	// module account permissions
@@ -277,8 +272,6 @@ type WasmApp struct {
 	ScopedTransferKeeper      capabilitykeeper.ScopedKeeper
 	ScopedWasmKeeper          capabilitykeeper.ScopedKeeper
 
-	RandomKeeper       randommodulekeeper.Keeper
-	ScopedRandomKeeper capabilitykeeper.ScopedKeeper
 
 	// make IBC modules public for test purposes
 	// these modules are never directly routed to by the IBC Router
@@ -321,7 +314,7 @@ func NewWasmApp(
 		minttypes.StoreKey, distrtypes.StoreKey, slashingtypes.StoreKey,
 		govtypes.StoreKey, paramstypes.StoreKey, ibchost.StoreKey, upgradetypes.StoreKey,
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey,
-		feegrant.StoreKey, authzkeeper.StoreKey, wasm.StoreKey, icahosttypes.StoreKey, icacontrollertypes.StoreKey,randommoduletypes.StoreKey,
+		feegrant.StoreKey, authzkeeper.StoreKey, wasm.StoreKey, icahosttypes.StoreKey, icacontrollertypes.StoreKey,
 	)
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
@@ -532,17 +525,6 @@ func NewWasmApp(
 		wasmOpts...,
 	)
 
-		scopedRandomKeeper := app.CapabilityKeeper.ScopeToModule(randommoduletypes.ModuleName)
-	app.ScopedRandomKeeper = scopedRandomKeeper
-	app.RandomKeeper = *randommodulekeeper.NewKeeper(
-		appCodec,
-		keys[randommoduletypes.StoreKey],
-		keys[randommoduletypes.MemStoreKey],
-		app.IBCKeeper.ChannelKeeper,
-		&app.IBCKeeper.PortKeeper,
-		scopedRandomKeeper,
-	)
-	randomModule := randommodule.NewAppModule(appCodec, app.RandomKeeper)
 
 	// Create static IBC router, add app routes, then set and seal it
 	ibcRouter := porttypes.NewRouter()
@@ -555,7 +537,7 @@ func NewWasmApp(
 		AddRoute(wasm.ModuleName, wasm.NewIBCHandler(app.WasmKeeper, app.IBCKeeper.ChannelKeeper)).
 		AddRoute(ibctransfertypes.ModuleName, transferIBCModule).
 		// AddRoute(icacontrollertypes.SubModuleName, icaControllerIBCModule).
-		AddRoute(icahosttypes.SubModuleName, icaHostIBCModule).AddRoute(randommoduletypes.ModuleName, randomModule)
+		AddRoute(icahosttypes.SubModuleName, icaHostIBCModule)
 		
 	// AddRoute(intertxtypes.ModuleName, icaControllerIBCModule)
 	app.IBCKeeper.SetRouter(ibcRouter)
@@ -602,7 +584,7 @@ func NewWasmApp(
 		params.NewAppModule(app.ParamsKeeper),
 		transferModule,
 		icaModule,
-		crisis.NewAppModule(&app.CrisisKeeper, skipGenesisInvariants), randomModule,// always be last to make sure that it checks for all invariants and not only part of them
+		crisis.NewAppModule(&app.CrisisKeeper, skipGenesisInvariants),// always be last to make sure that it checks for all invariants and not only part of them
 	)
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -688,7 +670,7 @@ func NewWasmApp(
 		ibchost.ModuleName,
 		icatypes.ModuleName,
 		// wasm after ibc transfer
-		wasm.ModuleName,	randommoduletypes.ModuleName,
+		wasm.ModuleName,
 	)
 
 	// Uncomment if you want to set a custom migration order here.
@@ -945,7 +927,6 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(icahosttypes.SubModuleName)
 	paramsKeeper.Subspace(icacontrollertypes.SubModuleName)
 	paramsKeeper.Subspace(wasm.ModuleName)
-	paramsKeeper.Subspace(randommoduletypes.ModuleName)
 
 	return paramsKeeper
 }

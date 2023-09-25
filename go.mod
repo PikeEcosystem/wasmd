@@ -3,10 +3,10 @@ module github.com/PikeEcosystem/wasmd
 go 1.18
 
 require (
-	github.com/CosmWasm/wasmvm v1.1.0
-	github.com/PikeEcosystem/cosmos-sdk v0.45.4
+	github.com/PikeEcosystem/cosmos-sdk v0.45.5
 	github.com/PikeEcosystem/ibc-go/v3 v3.0.2
 	github.com/PikeEcosystem/tendermint v0.0.4
+	github.com/PikeEcosystem/wasmvm v1.1.2
 	github.com/cosmos/iavl v0.19.4
 	github.com/dvsekhvalnov/jose2go v1.5.0
 	github.com/go-kit/kit v0.12.0

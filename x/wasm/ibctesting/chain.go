@@ -33,7 +33,7 @@ import (
 	"github.com/PikeEcosystem/ibc-go/v3/testing/mock"
 	tmabci "github.com/PikeEcosystem/tendermint/abci/types"
 	"github.com/PikeEcosystem/tendermint/crypto/tmhash"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	ocversion "github.com/PikeEcosystem/tendermint/version"
 
 	"github.com/PikeEcosystem/wasmd/app"
@@ -58,8 +58,8 @@ type TestChain struct {
 	TxConfig      client.TxConfig
 	Codec         codec.BinaryCodec
 
-	Vals    *octypes.ValidatorSet
-	Signers []octypes.PrivValidator
+	Vals    *pitypes.ValidatorSet
+	Signers []pitypes.PrivValidator
 
 	SenderPrivKey cryptotypes.PrivKey
 	SenderAccount authtypes.AccountI
@@ -88,9 +88,9 @@ func NewTestChain(t *testing.T, coord *Coordinator, chainID string, opts ...wasm
 	require.NoError(t, err)
 
 	// create validator set with single validator
-	validator := octypes.NewValidator(pubKey, 1)
-	valSet := octypes.NewValidatorSet([]*octypes.Validator{validator})
-	signers := []octypes.PrivValidator{privVal}
+	validator := pitypes.NewValidator(pubKey, 1)
+	valSet := pitypes.NewValidatorSet([]*pitypes.Validator{validator})
+	signers := []pitypes.PrivValidator{privVal}
 
 	// generate genesis account
 	senderPrivKey := secp256k1.GenPrivKey()
@@ -312,7 +312,7 @@ func (chain *TestChain) GetConsensusState(clientID string, height exported.Heigh
 
 // GetValsAtHeight will return the validator set of the chain at a given height. It will return
 // a success boolean depending on if the validator set exists or not at that height.
-func (chain *TestChain) GetValsAtHeight(height int64) (*octypes.ValidatorSet, bool) {
+func (chain *TestChain) GetValsAtHeight(height int64) (*pitypes.ValidatorSet, bool) {
 	histInfo, ok := chain.App.StakingKeeper.GetHistoricalInfo(chain.GetContext(), height)
 	if !ok {
 		return nil, false
@@ -324,7 +324,7 @@ func (chain *TestChain) GetValsAtHeight(height int64) (*octypes.ValidatorSet, bo
 	if err != nil {
 		panic(err)
 	}
-	return octypes.NewValidatorSet(tmValidators), true
+	return pitypes.NewValidatorSet(tmValidators), true
 }
 
 // GetAcknowledgement retrieves an acknowledgement for the provided packet. If the
@@ -356,7 +356,7 @@ func (chain *TestChain) ConstructUpdateTMClientHeaderWithTrustedHeight(counterpa
 		trustedHeight = chain.GetClientState(clientID).GetLatestHeight().(clienttypes.Height)
 	}
 	var (
-		tmTrustedVals *octypes.ValidatorSet
+		tmTrustedVals *pitypes.ValidatorSet
 		ok            bool
 	)
 	// Once we get TrustedHeight from client, we must query the validators from the counterparty chain
@@ -401,7 +401,7 @@ func (chain *TestChain) CurrentTMClientHeader() *ibctmtypes.Header {
 
 // CreateTMClientHeader creates a TM header to update the TM client. Args are passed in to allow
 // caller flexibility to use params that differ from the chain.
-func (chain *TestChain) CreateTMClientHeader(chainID string, blockHeight int64, trustedHeight clienttypes.Height, timestamp time.Time, tmValSet, tmTrustedVals *octypes.ValidatorSet, signers []octypes.PrivValidator) *ibctmtypes.Header {
+func (chain *TestChain) CreateTMClientHeader(chainID string, blockHeight int64, trustedHeight clienttypes.Height, timestamp time.Time, tmValSet, tmTrustedVals *pitypes.ValidatorSet, signers []pitypes.PrivValidator) *ibctmtypes.Header {
 	var (
 		valSet      *tmproto.ValidatorSet
 		trustedVals *tmproto.ValidatorSet
@@ -410,7 +410,7 @@ func (chain *TestChain) CreateTMClientHeader(chainID string, blockHeight int64, 
 
 	vsetHash := tmValSet.Hash()
 
-	tmHeader := octypes.Header{
+	tmHeader := pitypes.Header{
 		Version:            protoversion.Consensus{Block: ocversion.BlockProtocol, App: 2},
 		ChainID:            chainID,
 		Height:             blockHeight,
@@ -428,9 +428,9 @@ func (chain *TestChain) CreateTMClientHeader(chainID string, blockHeight int64, 
 	}
 	hhash := tmHeader.Hash()
 	blockID := MakeBlockID(hhash, 3, tmhash.Sum([]byte("part_set")))
-	voteSet := octypes.NewVoteSet(chainID, blockHeight, 1, tmproto.PrecommitType, tmValSet)
+	voteSet := pitypes.NewVoteSet(chainID, blockHeight, 1, tmproto.PrecommitType, tmValSet)
 
-	commit, err := octypes.MakeCommit(blockID, blockHeight, 1, voteSet, signers, timestamp)
+	commit, err := pitypes.MakeCommit(blockID, blockHeight, 1, voteSet, signers, timestamp)
 	require.NoError(chain.t, err)
 
 	signedHeader := &tmproto.SignedHeader{
@@ -458,11 +458,11 @@ func (chain *TestChain) CreateTMClientHeader(chainID string, blockHeight int64, 
 	}
 }
 
-// MakeBlockID copied unimported test functions from octypes to use them here
-func MakeBlockID(hash []byte, partSetSize uint32, partSetHash []byte) octypes.BlockID {
-	return octypes.BlockID{
+// MakeBlockID copied unimported test functions from pitypes to use them here
+func MakeBlockID(hash []byte, partSetSize uint32, partSetHash []byte) pitypes.BlockID {
+	return pitypes.BlockID{
 		Hash: hash,
-		PartSetHeader: octypes.PartSetHeader{
+		PartSetHeader: pitypes.PartSetHeader{
 			Total: partSetSize,
 			Hash:  partSetHash,
 		},
@@ -473,19 +473,19 @@ func MakeBlockID(hash []byte, partSetSize uint32, partSetHash []byte) octypes.Bl
 // (including voting power). It returns a signer array of PrivValidators that matches the
 // sorting of ValidatorSet.
 // The sorting is first by .VotingPower (descending), with secondary index of .Address (ascending).
-func CreateSortedSignerArray(altPrivVal, suitePrivVal octypes.PrivValidator,
-	altVal, suiteVal *octypes.Validator,
-) []octypes.PrivValidator {
+func CreateSortedSignerArray(altPrivVal, suitePrivVal pitypes.PrivValidator,
+	altVal, suiteVal *pitypes.Validator,
+) []pitypes.PrivValidator {
 	switch {
 	case altVal.VotingPower > suiteVal.VotingPower:
-		return []octypes.PrivValidator{altPrivVal, suitePrivVal}
+		return []pitypes.PrivValidator{altPrivVal, suitePrivVal}
 	case altVal.VotingPower < suiteVal.VotingPower:
-		return []octypes.PrivValidator{suitePrivVal, altPrivVal}
+		return []pitypes.PrivValidator{suitePrivVal, altPrivVal}
 	default:
 		if bytes.Compare(altVal.Address, suiteVal.Address) == -1 {
-			return []octypes.PrivValidator{altPrivVal, suitePrivVal}
+			return []pitypes.PrivValidator{altPrivVal, suitePrivVal}
 		}
-		return []octypes.PrivValidator{suitePrivVal, altPrivVal}
+		return []pitypes.PrivValidator{suitePrivVal, altPrivVal}
 	}
 }
 

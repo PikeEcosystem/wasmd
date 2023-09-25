@@ -18,7 +18,7 @@ import (
 	authkeeper "github.com/PikeEcosystem/cosmos-sdk/x/auth/keeper"
 	bankkeeper "github.com/PikeEcosystem/cosmos-sdk/x/bank/keeper"
 	banktypes "github.com/PikeEcosystem/cosmos-sdk/x/bank/types"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper/testdata"
 	"github.com/PikeEcosystem/wasmd/x/wasm/types"

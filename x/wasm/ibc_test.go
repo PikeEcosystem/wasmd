@@ -7,7 +7,7 @@ import (
 
 	clienttypes "github.com/PikeEcosystem/ibc-go/v3/modules/core/02-client/types"
 	channeltypes "github.com/PikeEcosystem/ibc-go/v3/modules/core/04-channel/types"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 )
 
 func TestMapToWasmVMIBCPacket(t *testing.T) {

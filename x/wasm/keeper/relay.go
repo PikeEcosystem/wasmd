@@ -3,7 +3,7 @@ package keeper
 import (
 	"time"
 
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 	"github.com/PikeEcosystem/cosmos-sdk/telemetry"
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
 	sdkerrors "github.com/PikeEcosystem/cosmos-sdk/types/errors"
@@ -139,7 +139,7 @@ func (k Keeper) OnRecvPacket(
 	if execErr != nil {
 		return nil, sdkerrors.Wrap(types.ErrExecuteFailed, execErr.Error())
 	}
-	if res.Err != "" { // handle error case as before https://github.com/CosmWasm/wasmvm/commit/c300106fe5c9426a495f8e10821e00a9330c56c6
+	if res.Err != "" { // handle error case as before https://github.com/PikeEcosystem/wasmvm/commit/c300106fe5c9426a495f8e10821e00a9330c56c6
 		return nil, sdkerrors.Wrap(types.ErrExecuteFailed, res.Err)
 	}
 	// note submessage reply results can overwrite the `Acknowledgement` data

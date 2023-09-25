@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 	codectypes "github.com/PikeEcosystem/cosmos-sdk/codec/types"
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
 	sdkerrors "github.com/PikeEcosystem/cosmos-sdk/types/errors"

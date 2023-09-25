@@ -19,7 +19,7 @@ import (
 	banktypes "github.com/PikeEcosystem/cosmos-sdk/x/bank/types"
 	"github.com/PikeEcosystem/cosmos-sdk/x/genutil"
 	genutiltypes "github.com/PikeEcosystem/cosmos-sdk/x/genutil/types"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 
 	"github.com/PikeEcosystem/wasmd/x/wasm/ioutils"
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper"
@@ -375,12 +375,12 @@ func hasContract(state *types.GenesisState, contractAddr string) bool {
 // GenesisData contains raw and unmarshalled data from the genesis file
 type GenesisData struct {
 	GenesisFile     string
-	GenDoc          *octypes.GenesisDoc
+	GenDoc          *pitypes.GenesisDoc
 	AppState        map[string]json.RawMessage
 	WasmModuleState *types.GenesisState
 }
 
-func NewGenesisData(genesisFile string, genDoc *octypes.GenesisDoc, appState map[string]json.RawMessage, wasmModuleState *types.GenesisState) *GenesisData {
+func NewGenesisData(genesisFile string, genDoc *pitypes.GenesisDoc, appState map[string]json.RawMessage, wasmModuleState *types.GenesisState) *GenesisData {
 	return &GenesisData{GenesisFile: genesisFile, GenDoc: genDoc, AppState: appState, WasmModuleState: wasmModuleState}
 }
 

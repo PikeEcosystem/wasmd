@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper/testdata"
 	"github.com/PikeEcosystem/wasmd/x/wasm/types"

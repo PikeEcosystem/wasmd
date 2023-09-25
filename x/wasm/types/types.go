@@ -6,10 +6,10 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
 	codectypes "github.com/PikeEcosystem/cosmos-sdk/codec/types"
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
 	sdkerrors "github.com/PikeEcosystem/cosmos-sdk/types/errors"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 )
 
 const (
@@ -270,6 +270,7 @@ func NewEnv(ctx sdk.Context, contractAddr sdk.AccAddress) wasmvmtypes.Env {
 			Height:  uint64(ctx.BlockHeight()),
 			Time:    uint64(nano),
 			ChainID: ctx.ChainID(),
+			Proof: 	 ctx.Proof(),
 		},
 		Contract: wasmvmtypes.ContractInfo{
 			Address: contractAddr.String(),

@@ -11,7 +11,7 @@ import (
 
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
 	"github.com/PikeEcosystem/tendermint/libs/log"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper/wasmtesting"
 )

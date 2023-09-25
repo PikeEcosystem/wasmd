@@ -28,8 +28,8 @@ import (
 	banktypes "github.com/PikeEcosystem/cosmos-sdk/x/bank/types"
 	distributiontypes "github.com/PikeEcosystem/cosmos-sdk/x/distribution/types"
 	"github.com/PikeEcosystem/tendermint/libs/rand"
-	wasmvm "github.com/CosmWasm/wasmvm"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvm "github.com/PikeEcosystem/wasmvm"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper/wasmtesting"
 	"github.com/PikeEcosystem/wasmd/x/wasm/types"

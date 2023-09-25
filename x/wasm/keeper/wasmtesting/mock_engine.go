@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"crypto/sha256"
 
-	wasmvm "github.com/CosmWasm/wasmvm"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvm "github.com/PikeEcosystem/wasmvm"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 	"github.com/PikeEcosystem/tendermint/libs/rand"
 
 	sdkerrors "github.com/PikeEcosystem/cosmos-sdk/types/errors"

@@ -15,7 +15,7 @@ import (
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
 	authtypes "github.com/PikeEcosystem/cosmos-sdk/x/auth/types"
 	banktypes "github.com/PikeEcosystem/cosmos-sdk/x/bank/types"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 
 	"github.com/PikeEcosystem/wasmd/app"
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper"
@@ -115,8 +115,8 @@ func newWasmExampleApp(t *testing.T) (*app.WasmApp, sdk.AccAddress) {
 		Address: acc.GetAddress().String(),
 		Coins:   sdk.NewCoins(sdk.NewCoin(sdk.DefaultBondDenom, amount)),
 	}
-	validator := octypes.NewValidator(pubKey, 1)
-	valSet := octypes.NewValidatorSet([]*octypes.Validator{validator})
+	validator := pitypes.NewValidator(pubKey, 1)
+	valSet := pitypes.NewValidatorSet([]*pitypes.Validator{validator})
 	wasmApp := app.SetupWithGenesisValSet(t, valSet, []authtypes.GenesisAccount{acc}, nil, balance)
 
 	return wasmApp, senderAddr

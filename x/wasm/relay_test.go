@@ -15,8 +15,8 @@ import (
 	clienttypes "github.com/PikeEcosystem/ibc-go/v3/modules/core/02-client/types"
 	channeltypes "github.com/PikeEcosystem/ibc-go/v3/modules/core/04-channel/types"
 	ibctesting "github.com/PikeEcosystem/ibc-go/v3/testing"
-	wasmvm "github.com/CosmWasm/wasmvm"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvm "github.com/PikeEcosystem/wasmvm"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 
 	wasmibctesting "github.com/PikeEcosystem/wasmd/x/wasm/ibctesting"
 	wasmkeeper "github.com/PikeEcosystem/wasmd/x/wasm/keeper"

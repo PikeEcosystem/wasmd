@@ -13,7 +13,7 @@ import (
 	"github.com/spf13/cobra"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	wasmvm "github.com/CosmWasm/wasmvm"
+	wasmvm "github.com/PikeEcosystem/wasmvm"
 	"github.com/PikeEcosystem/cosmos-sdk/client"
 	"github.com/PikeEcosystem/cosmos-sdk/codec"
 	cdctypes "github.com/PikeEcosystem/cosmos-sdk/codec/types"
@@ -257,7 +257,7 @@ func getExpectedLibwasmVersion() string {
 		panic("can't read build info")
 	}
 	for _, d := range buildInfo.Deps {
-		if d.Path != "github.com/CosmWasm/wasmvm" {
+		if d.Path != "github.com/PikeEcosystem/wasmvm" {
 			continue
 		}
 		if d.Replace != nil {

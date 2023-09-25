@@ -19,7 +19,7 @@ import (
 	stakingkeeper "github.com/PikeEcosystem/cosmos-sdk/x/staking/keeper"
 	"github.com/PikeEcosystem/cosmos-sdk/x/staking/types"
 	stakingtypes "github.com/PikeEcosystem/cosmos-sdk/x/staking/types"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper/testdata"
 	wasmtypes "github.com/PikeEcosystem/wasmd/x/wasm/types"

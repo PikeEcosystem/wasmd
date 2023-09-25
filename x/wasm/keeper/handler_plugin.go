@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 	"github.com/PikeEcosystem/cosmos-sdk/baseapp"
 	codectypes "github.com/PikeEcosystem/cosmos-sdk/codec/types"
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"

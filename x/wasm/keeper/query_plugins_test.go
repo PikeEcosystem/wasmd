@@ -12,7 +12,7 @@ import (
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
 	sdkerrors "github.com/PikeEcosystem/cosmos-sdk/types/errors"
 	channeltypes "github.com/PikeEcosystem/ibc-go/v3/modules/core/04-channel/types"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper/wasmtesting"
 	"github.com/PikeEcosystem/wasmd/x/wasm/types"

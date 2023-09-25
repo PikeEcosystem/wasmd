@@ -16,7 +16,7 @@ import (
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
 	govtypes "github.com/PikeEcosystem/cosmos-sdk/x/gov/types"
 	"github.com/PikeEcosystem/tendermint/libs/rand"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 )
 
 func TestContractInfoValidateBasic(t *testing.T) {

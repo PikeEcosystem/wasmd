@@ -13,7 +13,7 @@ import (
 	"github.com/spf13/cobra"
 	flag "github.com/spf13/pflag"
 
-	wasmvm "github.com/CosmWasm/wasmvm"
+	wasmvm "github.com/PikeEcosystem/wasmvm"
 	"github.com/PikeEcosystem/cosmos-sdk/client"
 	"github.com/PikeEcosystem/cosmos-sdk/client/flags"
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"

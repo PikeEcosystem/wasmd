@@ -26,7 +26,7 @@ import (
 	genutiltypes "github.com/PikeEcosystem/cosmos-sdk/x/genutil/types"
 	stakingtypes "github.com/PikeEcosystem/cosmos-sdk/x/staking/types"
 	"github.com/PikeEcosystem/tendermint/libs/log"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper"
 	"github.com/PikeEcosystem/wasmd/x/wasm/types"
@@ -683,7 +683,7 @@ func setupGenesis(t *testing.T, wasmGenesis types.GenesisState) string {
 
 	appStateBz, err := json.Marshal(appState)
 	require.NoError(t, err)
-	genDoc := octypes.GenesisDoc{
+	genDoc := pitypes.GenesisDoc{
 		ChainID:  "testing",
 		AppState: appStateBz,
 	}

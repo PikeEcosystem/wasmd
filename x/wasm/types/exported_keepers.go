@@ -1,7 +1,7 @@
 package types
 
 import (
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
 	capabilitytypes "github.com/PikeEcosystem/cosmos-sdk/x/capability/types"
 )

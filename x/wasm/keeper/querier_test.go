@@ -19,8 +19,8 @@ import (
 	"github.com/PikeEcosystem/cosmos-sdk/types/query"
 	govtypes "github.com/PikeEcosystem/cosmos-sdk/x/gov/types"
 	"github.com/PikeEcosystem/tendermint/libs/log"
-	wasmvm "github.com/CosmWasm/wasmvm"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvm "github.com/PikeEcosystem/wasmvm"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper/wasmtesting"
 	"github.com/PikeEcosystem/wasmd/x/wasm/types"

@@ -3,7 +3,7 @@ package wasmtesting
 import (
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
 
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 )
 
 // MockGasRegister mock that implements keeper.GasRegister

@@ -13,8 +13,8 @@ import (
 	"strings"
 	"time"
 
-	wasmvm "github.com/CosmWasm/wasmvm"
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvm "github.com/PikeEcosystem/wasmvm"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 	"github.com/PikeEcosystem/cosmos-sdk/codec"
 	"github.com/PikeEcosystem/cosmos-sdk/store/prefix"
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"

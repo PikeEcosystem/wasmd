@@ -15,7 +15,7 @@ import (
 	govtypes "github.com/PikeEcosystem/cosmos-sdk/x/gov/types"
 	"github.com/PikeEcosystem/cosmos-sdk/x/params/client/utils"
 	"github.com/PikeEcosystem/cosmos-sdk/x/params/types/proposal"
-	wasmvm "github.com/CosmWasm/wasmvm"
+	wasmvm "github.com/PikeEcosystem/wasmvm"
 
 	"github.com/PikeEcosystem/wasmd/x/wasm/keeper/wasmtesting"
 	"github.com/PikeEcosystem/wasmd/x/wasm/types"

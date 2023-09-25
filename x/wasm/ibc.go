@@ -3,7 +3,7 @@ package wasm
 import (
 	"math"
 
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
 	sdkerrors "github.com/PikeEcosystem/cosmos-sdk/types/errors"
 	capabilitytypes "github.com/PikeEcosystem/cosmos-sdk/x/capability/types"

@@ -16,8 +16,8 @@ import (
 	"github.com/PikeEcosystem/cosmos-sdk/client"
 	"github.com/PikeEcosystem/cosmos-sdk/codec"
 	sdkerrors "github.com/PikeEcosystem/cosmos-sdk/types/errors"
-	ocrpcmocks "github.com/PikeEcosystem/tendermint/rpc/client/mocks"
-	ocrpctypes "github.com/PikeEcosystem/tendermint/rpc/core/types"
+	pirpcmocks "github.com/PikeEcosystem/tendermint/rpc/client/mocks"
+	pirpctypes "github.com/PikeEcosystem/tendermint/rpc/core/types"
 
 	"github.com/PikeEcosystem/wasmd/x/wasmplus/types"
 )
@@ -123,8 +123,8 @@ func TestGetCmdIsInactiveContract(t *testing.T) {
 }
 
 func makeContext(bz []byte) context.Context {
-	result := ocrpctypes.ResultABCIQuery{Response: abci.ResponseQuery{Value: bz}}
-	mockClient := ocrpcmocks.RemoteClient{}
+	result := pirpctypes.ResultABCIQuery{Response: abci.ResponseQuery{Value: bz}}
+	mockClient := pirpcmocks.RemoteClient{}
 	{
 		// #1
 		mockClient.On("ABCIQueryWithOptions",

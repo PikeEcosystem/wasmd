@@ -3,7 +3,7 @@ package wasmtesting
 import (
 	"errors"
 
-	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
+	wasmvmtypes "github.com/PikeEcosystem/wasmvm/types"
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
 )
 
